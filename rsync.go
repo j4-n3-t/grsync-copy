@@ -178,7 +178,8 @@ type RsyncOptions struct {
 	// HumanReadable output numbers in a human-readable format
 	HumanReadable bool
 	// Progress show progress during transfer
-	Progress bool
+	// // remove
+	// Progress bool
 	// Read daemon-access password from FILE
 	PasswordFile string
 	// limit socket I/O bandwidth
@@ -205,9 +206,10 @@ type RsyncOptions struct {
 
 // StdoutPipe returns a pipe that will be connected to the command's
 // standard output when the command starts.
-func (r Rsync) StdoutPipe() (io.ReadCloser, error) {
-	return r.cmd.StdoutPipe()
-}
+// // remove
+// func (r Rsync) StdoutPipe() (io.ReadCloser, error) {
+// 	return r.cmd.StdoutPipe()
+// }
 
 // StderrPipe returns a pipe that will be connected to the command's
 // standard error when the command starts.
@@ -557,9 +559,10 @@ func getArguments(options RsyncOptions) []string {
 		arguments = append(arguments, "--human-readable")
 	}
 
-	if options.Progress {
-		arguments = append(arguments, "--progress")
-	}
+	// // remove
+	// if options.Progress {
+	// 	arguments = append(arguments, "--progress")
+	// }
 
 	if options.PasswordFile != "" {
 		arguments = append(arguments, "--password-file", options.PasswordFile)

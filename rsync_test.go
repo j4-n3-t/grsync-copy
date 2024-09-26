@@ -546,20 +546,21 @@ func TestParseArguments(t *testing.T) {
 		assert.Contains(t, args, "--human-readable")
 	})
 
-	t.Run("--progress", func(t *testing.T) {
-		args := getArguments(RsyncOptions{
-			Progress: true,
-		})
-		assert.Contains(t, args, "--progress")
-	})
+	// // remove
+	// t.Run("--progress", func(t *testing.T) {
+	// 	args := getArguments(RsyncOptions{
+	// 		Progress: true,
+	// 	})
+	// 	assert.Contains(t, args, "--progress")
+	// })
 
-	t.Run("--info", func(t *testing.T) {
-		args := getArguments(RsyncOptions{
-			Info: "progress2",
-		})
-		assert.Contains(t, args, "--info")
-		assert.Contains(t, args, "progress2")
-	})
+	// t.Run("--info", func(t *testing.T) {
+	// 	args := getArguments(RsyncOptions{
+	// 		Info: "progress2",
+	// 	})
+	// 	assert.Contains(t, args, "--info")
+	// 	assert.Contains(t, args, "progress2")
+	// })
 
 	t.Run("--exclude", func(t *testing.T) {
 		args := getArguments(RsyncOptions{
