@@ -177,9 +177,6 @@ type RsyncOptions struct {
 	Stats bool
 	// HumanReadable output numbers in a human-readable format
 	HumanReadable bool
-	// Progress show progress during transfer
-	// // remove
-	// Progress bool
 	// Read daemon-access password from FILE
 	PasswordFile string
 	// limit socket I/O bandwidth
@@ -203,13 +200,6 @@ type RsyncOptions struct {
 	//out-format
 	OutFormat bool
 }
-
-// StdoutPipe returns a pipe that will be connected to the command's
-// standard output when the command starts.
-// // remove
-// func (r Rsync) StdoutPipe() (io.ReadCloser, error) {
-// 	return r.cmd.StdoutPipe()
-// }
 
 // StderrPipe returns a pipe that will be connected to the command's
 // standard error when the command starts.
@@ -559,11 +549,6 @@ func getArguments(options RsyncOptions) []string {
 		arguments = append(arguments, "--human-readable")
 	}
 
-	// // remove
-	// if options.Progress {
-	// 	arguments = append(arguments, "--progress")
-	// }
-
 	if options.PasswordFile != "" {
 		arguments = append(arguments, "--password-file", options.PasswordFile)
 	}
@@ -613,6 +598,7 @@ func getArguments(options RsyncOptions) []string {
 
 func createDir(dir string) error {
 	cmd := exec.Command("mkdir", "-p", dir)
+	cmd.Stdout = os.DevNull
 	if err := cmd.Start(); err != nil {
 		return err
 	}
